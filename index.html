@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background: #565454;
+            padding: 20px;
+            margin: 0;
+        }
+    
+        #chatContainer {
+            max-width: 100%;
+            width: 100%;
+            max-width: 600px;
+            background: rgb(245, 241, 241);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            margin:150px auto;
+            box-sizing: border-box;
+            h3{
+                text-align: center;
+                font-size: 25px;
+            }
+        }
+    
+        #chatBox {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    
+        .user, .bot {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            word-wrap: break-word;
+            font-weight: 100;
+        }
+    
+        .user {
+            background-color: #dcf8c6;
+            text-align: right;
+        }
+    
+        .bot {
+            background-color: #eee;
+            text-align: left;
+        }
+    
+        #userInput {
+            width: 70%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    
+        #sendBtn {
+            width: 28%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    
+        @media (max-width: 480px) {
+            #userInput, #sendBtn {
+                width: 100%;
+                margin-top: 5px;
+            }
+    
+            #chatContainer {
+                padding: 10px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+<div id="chatContainer">
+    <h3>Welcome To Chatbot ✌️</h3>
+    <div id="chatBox"></div>
+    <input type="text" id="userInput" placeholder="Type a message...">
+    <button id="sendBtn" onclick="chat()">Send</button>
+</div>
+
+<script>
+    function chat() {
+        let input = document.getElementById("userInput").value;
+        let msg = input.toLowerCase(); // convert to lowercase
+        let chatBox = document.getElementById("chatBox");
+
+        // Show user message
+        chatBox.innerHTML += `<div class="user">${input}</div>`;
+
+        // Prepare bot response
+        let reply = "";
+
+        if (msg === "hello") {
+            reply = "Hi! How can I help you?";
+        } else if (msg === "how are you") {
+            reply = "I'm doing great!";
+        } else if (msg === "bye") {
+            reply = "Goodbye! Have a great day.";
+        } else if (msg === "about yourself") {
+            reply = "I am a passionate developer currently learning full-stack development. I have completed HTML, CSS, and GSAP, and I also have experience with C, C++, Python, and Java"
+        } else {
+            reply = "Sorry, I didn't understand that.";
+        }
+
+        // Show bot reply
+        chatBox.innerHTML += `<div class="bot">${reply}</div>`;
+
+        // Clear input
+        document.getElementById("userInput").value = "";
+
+        // Scroll to bottom
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
